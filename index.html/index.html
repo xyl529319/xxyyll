@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>徐钰林 - 个人简历</title>
+    <style>
+        :root {
+            --bg: #fafafa;
+            --surface: #ffffff;
+            --surface2: #f5f5f5;
+            --text: #171717;
+            --text2: #404040;
+            --text3: #737373;
+            --border: #e5e5e5;
+            --border2: #a3a3a3;
+            --primary: #f97316;
+            --primary-light: #fb923c;
+            --primary-bg: #fff7ed;
+            --accent: #171717;
+            --accent-bg: #fafafa;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,.04);
+            --shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+            --shadow-md: 0 4px 6px rgba(0,0,0,.05), 0 2px 4px rgba(0,0,0,.03);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,.07), 0 4px 10px rgba(0,0,0,.03);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --radius-xs: 6px;
+            --nav-bg: rgba(255,255,255,.82);
+            --nav-blur: blur(16px);
+            --gradient-hero: linear-gradient(135deg, #f97316 0%, #ea580c 50%, #c2410c 100%);
+            --gradient-card: linear-gradient(135deg, #fff7ed 0%, #fff1f2 100%);
+            --transition: 180ms ease;
+        }
+        .dark {
+            --bg: #0a0a0a;
+            --surface: #171717;
+            --surface2: #262626;
+            --text: #f5f5f5;
+            --text2: #d4d4d4;
+            --text3: #a3a3a3;
+            --border: #404040;
+            --border2: #525252;
+            --primary: #f97316;
+            --primary-light: #fb923c;
+            --primary-bg: #1c1917;
+            --accent: #f5f5f5;
+            --accent-bg: #171717;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,.2);
+            --shadow: 0 1px 3px rgba(0,0,0,.3);
+            --shadow-md: 0 4px 6px rgba(0,0,0,.35);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,.4);
+            --nav-bg: rgba(10,10,10,.82);
+            --nav-blur: blur(16px);
+            --gradient-hero: linear-gradient(135deg, #c2410c 0%, #9a3412 50%, #7c2d12 100%);
+            --gradient-card: linear-gradient(135deg, #1c1917 0%, #1a1a1a 100%);
+        }
+        @media(prefers-reduced-motion:reduce){:root{--transition:0ms}*,::after,::before{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+        *,::after,::before{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+        body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;transition:background var(--transition),color var(--transition);min-height:100vh}
+        a{color:var(--primary);text-decoration:none;transition:color var(--transition)}a:hover{color:var(--primary-light)}
+        .container{max-width:960px;margin:0 auto;padding:0 20px}
+        .nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--nav-bg);backdrop-filter:var(--nav-blur);-webkit-backdrop-filter:var(--nav-blur);border-bottom:1px solid var(--border);transition:all var(--transition);padding:0 12px;height:52px;display:flex;align-items:center}
+        .nav-inner{max-width:960px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px}
+        .nav-brand{font-weight:700;font-size:1.05rem;color:var(--text);white-space:nowrap;letter-spacing:-.01em}
+        .nav-links{display:flex;align-items:center;gap:2px;flex-wrap:wrap;justify-content:flex-end}
+        .nav-links a{display:inline-block;padding:6px 11px;border-radius:20px;font-size:.84rem;font-weight:500;color:var(--text2);transition:all var(--transition);white-space:nowrap;letter-spacing:.01em}
+        .nav-links a:focus-visible,.nav-links a:hover{background:var(--primary-bg);color:var(--primary);outline:none}
+        .nav-actions{display:flex;align-items:center;gap:6px;flex-shrink:0}
+        .btn-icon{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);transition:all var(--transition);font-size:.95rem;flex-shrink:0}
+        .btn-icon:hover{background:var(--primary-bg);color:var(--primary);border-color:var(--primary-light)}
+        .btn-icon:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+        .hero{padding:100px 0 50px;text-align:center;position:relative;overflow:hidden}
+        .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:700px;border-radius:50%;background:var(--gradient-hero);opacity:.06;pointer-events:none;z-index:0}
+        .hero-content{position:relative;z-index:1}
+        .hero-avatar-wrapper{width:80px;height:80px;border-radius:50%;margin:0 auto 20px;box-shadow:var(--shadow-lg);overflow:hidden;position:relative;border:2px solid rgba(249,115,22,.25)}
+        .dark .hero-avatar-wrapper{border-color:rgba(251,146,60,.35)}
+        .hero-avatar-img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
+        .hero-avatar-fallback{width:100%;height:100%;border-radius:50%;background:var(--gradient-hero);display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;font-weight:700;letter-spacing:.02em;position:absolute;top:0;left:0}
+        .hero h1{font-size:2.2rem;font-weight:800;letter-spacing:-.02em;margin-bottom:6px;color:var(--text)}
+        .hero .subtitle{font-size:1.05rem;color:var(--text2);margin-bottom:16px;font-weight:400}
+        .hero-badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:20px}
+        .badge{display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;font-size:.82rem;font-weight:500;background:var(--primary-bg);color:var(--primary);transition:all var(--transition);letter-spacing:.01em}
+        .badge.accent{background:var(--accent-bg);color:var(--accent);border:1px solid var(--border2)}
+        .dark .badge.accent{color:var(--accent);background:var(--surface2)}
+        .hero-cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;align-items:center}
+        .btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:24px;font-weight:600;font-size:.9rem;cursor:pointer;border:none;transition:all var(--transition);letter-spacing:.01em;text-decoration:none}
+        .btn-primary{background:var(--primary);color:#fff;box-shadow:var(--shadow-md)}
+        .btn-primary:hover{background:var(--primary-light);box-shadow:var(--shadow-lg);transform:translateY(-1px);color:#fff}
+        .btn-outline{background:var(--surface);color:var(--text);border:1.5px solid var(--border2)}
+        .btn-outline:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-bg)}
+        .email-display{display:inline-flex;align-items:center;gap:6px;background:var(--surface);padding:10px 18px;border-radius:24px;border:1.5px solid var(--border2);font-size:.9rem;font-weight:500;color:var(--text)}
+        .email-display .copy-btn{background:none;border:none;cursor:pointer;color:var(--primary);font-size:1rem;padding:2px 4px;border-radius:50%;transition:all var(--transition)}
+        .email-display .copy-btn:hover{background:var(--primary-bg)}
+        .section{padding:40px 0}
+        .section-title{font-size:1.35rem;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:10px;letter-spacing:-.01em;color:var(--text)}
+        .section-title::before{content:'';display:inline-block;width:4px;height:22px;border-radius:2px;background:var(--primary);flex-shrink:0}
+        .highlights-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+        @media(max-width:768px){.highlights-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:420px){.highlights-grid{grid-template-columns:1fr}}
+        .highlight-card{background:var(--surface);border-radius:var(--radius);padding:22px 18px;text-align:center;border:1px solid var(--border);transition:all var(--transition);box-shadow:var(--shadow-sm)}
+        .highlight-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--primary-light)}
+        .highlight-num{font-size:2rem;font-weight:800;color:var(--primary);letter-spacing:-.02em;line-height:1.1}
+        .highlight-label{font-size:.82rem;color:var(--text3);margin-top:4px;font-weight:500}
+        .tabs-nav{display:flex;gap:2px;border-bottom:2px solid var(--border);margin-bottom:16px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+        .tabs-nav::-webkit-scrollbar{display:none}
+        .tab-btn{padding:10px 18px;border:none;background:none;cursor:pointer;font-size:.9rem;font-weight:500;color:var(--text3);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all var(--transition);white-space:nowrap;border-radius:4px 4px 0 0;letter-spacing:.01em;font-family:inherit}
+        .tab-btn:hover{color:var(--text);background:var(--surface2)}
+        .tab-btn.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:600}
+        .tab-btn:focus-visible{outline:2px solid var(--primary);outline-offset:-2px}
+        .tab-panel{display:none;animation:fadeSlideIn .25s ease}
+        .tab-panel.active{display:block}
+        @keyframes fadeSlideIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+        @media(prefers-reduced-motion:reduce){.tab-panel{animation:none}}
+        .card{background:var(--surface);border-radius:var(--radius);padding:20px 22px;border:1px solid var(--border);margin-bottom:12px;transition:all var(--transition);box-shadow:var(--shadow-sm)}
+        .card:hover{box-shadow:var(--shadow-md);border-color:var(--border2)}
+        .card-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+        .card-title{font-weight:700;font-size:1.02rem;color:var(--text)}
+        .card-subtitle{font-size:.82rem;color:var(--text3);font-weight:500}
+        .card-meta{font-size:.78rem;color:var(--text3);background:var(--surface2);padding:4px 10px;border-radius:12px;white-space:nowrap}
+        .card ul{list-style:none;padding:0}
+        .card ul li{position:relative;padding-left:18px;margin-bottom:6px;font-size:.9rem;color:var(--text2);line-height:1.55}
+        .card ul li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:6px;border-radius:50%;background:var(--primary);opacity:.7}
+        .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+        .skill-category{background:var(--surface);border-radius:var(--radius);padding:18px 20px;border:1px solid var(--border);box-shadow:var(--shadow-sm)}
+        .skill-category h4{font-size:.9rem;font-weight:700;margin-bottom:10px;color:var(--text);letter-spacing:.01em}
+        .skill-tags{display:flex;flex-wrap:wrap;gap:6px}
+        .skill-tag{padding:5px 12px;border-radius:14px;font-size:.78rem;font-weight:500;background:var(--surface2);color:var(--text2);transition:all var(--transition)}
+        .skill-tag.high{background:var(--primary-bg);color:var(--primary);font-weight:600}
+        .timeline{position:relative;padding-left:28px}
+        .timeline::before{content:'';position:absolute;left:8px;top:4px;bottom:4px;width:2px;background:var(--border2);border-radius:1px}
+        .timeline-item{position:relative;margin-bottom:18px;padding-left:8px}
+        .timeline-item::before{content:'';position:absolute;left:-24px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--primary);border:2px solid var(--surface);box-shadow:0 0 0 2px var(--primary);opacity:.7}
+        .timeline-title{font-weight:700;font-size:.95rem;color:var(--text)}
+        .timeline-sub{font-size:.82rem;color:var(--text3);margin-bottom:2px}
+        .certs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+        .cert-card{background:var(--surface);border-radius:var(--radius-sm);padding:14px 16px;border:1px solid var(--border);display:flex;align-items:center;gap:10px;transition:all var(--transition);box-shadow:var(--shadow-sm)}
+        .cert-card:hover{box-shadow:var(--shadow-md);border-color:var(--primary-light)}
+        .cert-icon{width:36px;height:36px;border-radius:50%;background:var(--primary-bg);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;font-weight:700}
+        .cert-info{font-size:.82rem;line-height:1.4}
+        .cert-info strong{color:var(--text);display:block;font-size:.85rem}
+        .cert-info span{color:var(--text3);font-size:.75rem}
+        .back-top{position:fixed;bottom:28px;right:28px;width:42px;height:42px;border-radius:50%;background:var(--primary);color:#fff;border:none;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-lg);opacity:0;transform:translateY(20px);pointer-events:none;transition:all var(--transition);z-index:999}
+        .back-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+        .back-top:hover{background:var(--primary-light);transform:translateY(-2px);box-shadow:0 14px 28px rgba(0,0,0,.2)}
+        .footer{text-align:center;padding:30px 0;color:var(--text3);font-size:.8rem;border-top:1px solid var(--border);margin-top:30px}
+        .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#171717;color:#fff;padding:10px 22px;border-radius:24px;font-size:.85rem;font-weight:500;z-index:2000;pointer-events:none;transition:transform .3s ease;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+        .dark .toast{background:#f5f5f5;color:#171717;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+        .toast.show{transform:translateX(-50%) translateY(0)}
+        @media print{
+            .nav,.back-top,.toast,.hero-cta .btn-outline,.nav-actions,.btn-icon{display:none!important}
+            body{background:#fff!important;color:#000!important;font-size:12px;line-height:1.5}
+            .container{max-width:100%;padding:0 10px}
+            .hero{padding:20px 0 16px;text-align:left}
+            .hero::before{display:none}
+            .hero-avatar-wrapper{width:60px;height:60px;margin:0 0 12px 0;border:1px solid #ccc}
+            .hero h1{font-size:1.4rem;color:#000}
+            .hero .subtitle{font-size:.85rem;color:#333}
+            .hero-badges{justify-content:flex-start}
+            .badge{background:#f0f0f0;color:#333;border:1px solid #ccc}
+            .section{padding:16px 0;page-break-inside:avoid}
+            .card,.skill-category,.cert-card,.highlight-card{box-shadow:none;border:1px solid #ddd;background:#fff;page-break-inside:avoid}
+            .highlight-num{color:#000}
+            .tab-panel{display:block!important;animation:none}
+            .tabs-nav{display:none}
+            .card ul li{color:#333}
+            .section-title::before{background:#000}
+            .highlight-card:hover,.card:hover,.cert-card:hover{transform:none;box-shadow:none}
+            .footer{border-top:1px solid #ccc;color:#666}
+            a{color:#000}
+        }
+        @media(max-width:600px){
+            .hero h1{font-size:1.6rem}
+            .hero .subtitle{font-size:.9rem}
+            .nav-links a{padding:5px 7px;font-size:.75rem}
+            .nav-brand{font-size:.9rem}
+            .btn{padding:8px 16px;font-size:.82rem}
+            .card{padding:14px 16px}
+            .card-title{font-size:.9rem}
+            .highlight-num{font-size:1.5rem}
+            .back-top{bottom:16px;right:16px;width:36px;height:36px;font-size:1rem}
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav" role="navigation" aria-label="主导航">
+        <div class="nav-inner">
+            <span class="nav-brand">📄 徐钰林</span>
+            <div class="nav-links">
+                <a href="#about" tabindex="0">关于</a>
+                <a href="#experience" tabindex="0">经历</a>
+                <a href="#projects" tabindex="0">项目</a>
+                <a href="#skills" tabindex="0">技能</a>
+                <a href="#education" tabindex="0">证书</a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-icon" id="themeToggle" aria-label="切换深色/浅色模式" title="切换深色/浅色模式" tabindex="0">🌓</button>
+                <button class="btn-icon" id="printBtn" aria-label="打印简历" title="打印简历" tabindex="0">🖨️</button>
+            </div>
+        </div>
+    </nav>
+
+    <main id="app" class="container"></main>
+
+    <button class="back-top" id="backTop" aria-label="返回顶部" title="返回顶部">↑</button>
+    <div class="toast" id="toast" aria-live="polite"></div>
+
+    <script>
+        (function() {
+            const resume = {
+                name: '徐钰林',
+                phone: '18157938985',
+                email: '1399529319@qq.com',
+                avatarSrc: 'logo.jpg',
+                location: '浙江省武义县',
+                heroTitle: '数学类专业 · AI训练师 · 数据分析学习者',
+                heroIntro: '即将就读于上海海事大学数学类专业。持有阿里巴巴认证初级AI训练师证书，具备扎实的AI数据标注与处理能力，对数学建模、数据分析与机器学习充满热情。拥有二胡、软笔书法、素描三项十级证书，兼具理性思维与艺术修养。',
+                heroBadges: [
+                    { text: 'AI训练师认证', accent: false },
+                    { text: 'Python数据分析', accent: false },
+                    { text: '数学建模', accent: false },
+                    { text: '二胡十级', accent: true },
+                    { text: '书法十级', accent: true },
+                    { text: '素描十级', accent: true },
+                ],
+                highlights: [
+                    { num: '98.5%+', label: '数据标注准确率' },
+                    { num: '20,000+', label: '累计处理训练样本' },
+                    { num: '30%', label: '单条处理耗时降低' },
+                    { num: '87%', label: '意图识别Top-1准确率' },
+                ],
+                experiences: [{
+                    id: 'exp1',
+                    tab: '实习/实践',
+                    title: 'AI数据标注与训练项目（自主实践）',
+                    subtitle: 'AI训练师',
+                    date: '2025.07 – 至今',
+                    points: [
+                        '主动学习阿里巴巴AI训练师体系，完成150+学时的理论与实操，掌握质量检验、标注规则设计、多维评估方法。',
+                        '模拟执行图像分类、OCR文本识别等标注任务，累计处理训练样本20,000+条，标注准确率稳定在98.5%以上。',
+                        '通过优化分步标注流程与快捷键映射，单条数据处理耗时减少约30%，产出效率进入实践组前10%。',
+                        '设计简易标注质量核查SOP，将返工率从8%降低至2%以内，保证训练数据集一致性。',
+                    ],
+                }, {
+                    id: 'exp2',
+                    tab: '实习/实践',
+                    title: '个人数学建模与数据分析学习项目',
+                    subtitle: '负责人',
+                    date: '2026.04 – 至今',
+                    points: [
+                        '以城市交通流量预测为课题，独立完成公开数据集的采集、清洗与特征构建，数据量约50,000行。',
+                        '搭建线性回归与随机森林基线模型，初步实现预测准确率82%（以MAPE衡量），形成完整分析报告。',
+                        '利用Matplotlib与Seaborn完成10余组可视化图表，清晰呈现小时粒度流量变化规律与异常时段。',
+                        '项目过程强化了Python编程与模型迭代能力，为大学阶段系统学习数学建模打下基础。',
+                    ],
+                }],
+                projects: [{
+                    id: 'proj1',
+                    tab: 'AI/数据',
+                    title: '智能问答数据集构建与训练模拟',
+                    subtitle: '核心成员',
+                    date: '近期项目',
+                    techStack: ['Python', '正则表达式', 'BERT-base', 'NLP'],
+                    points: [
+                        '参与构建面向电商客服场景的中文FAQ配对数据集，负责数据源筛选与负样本生成策略设计。',
+                        '使用正则表达式与关键词匹配完成初步自动标注，后人工校准2,400条问答对，确保语义逻辑一致性。',
+                        '模拟调用BERT-base模型进行意图识别微调，Top-1准确率从70%提升至87%（测试集2,000条）。',
+                        '产出标注规范文档与训练日志，总结长尾意图识别瓶颈，为后续优化提出5条具体改进建议。',
+                    ],
+                }, {
+                    id: 'proj2',
+                    tab: 'AI/数据',
+                    title: '校园二手物品价格影响因素分析',
+                    subtitle: '独立完成',
+                    date: '近期项目',
+                    techStack: ['Python', '爬虫', '卡方检验', '可视化'],
+                    points: [
+                        '爬取校园论坛二手交易板块近一年交易帖1,200条，结构化提取价格、品类、新旧程度、描述词云等字段。',
+                        '清洗数据后运用卡方检验与相关性分析，发现"物品成色""描述信息完整度"与成交价格显著相关（p<0.05）。',
+                        '输出2,000字分析报告及优化建议，被部分校内二手群群主采纳为发布规范参考。',
+                        '全程使用Python完成数据处理、分析及可视化，代码与报告已上传GitHub仓库。',
+                    ],
+                }],
+                skills: [
+                    { category: 'AI与数据标注', tags: [{ name: '数据标注规范', high: true }, { name: '质量检验', high: true }, { name: 'OCR标注', high: true }, { name: '图像分类标注', high: false }, { name: '人机协同训练', high: false }] },
+                    { category: '编程与工具', tags: [{ name: 'Python', high: true }, { name: 'Pandas', high: true }, { name: 'NumPy', high: true }, { name: 'Matplotlib', high: true }, { name: 'SQL入门', high: false }, { name: 'Markdown', high: false }, { name: 'LaTeX', high: false }, { name: 'ChatGPT/AI工具', high: true }] },
+                    { category: '数据分析', tags: [{ name: '数据清洗', high: true }, { name: '描述统计', high: true }, { name: '可视化', high: true }, { name: '相关性分析', high: false }, { name: '机器学习入门', high: false }] },
+                    { category: '设计与文档', tags: [{ name: 'Canva', high: true }, { name: 'PPT汇报', high: true }, { name: '结构化图表', high: true }] },
+                    { category: '特长', tags: [{ name: '二胡十级', high: true }, { name: '软笔书法十级', high: true }, { name: '素描十级', high: true }] },
+                    { category: '语言', tags: [{ name: '普通话流利', high: true }, { name: '英语CET-4', high: false }, { name: '技术文档阅读', high: false }] },
+                ],
+                education: [
+                    { school: '上海海事大学', degree: '数学类 · 理学学士', date: '2026.09 – 2030.06（预计）', details: '主修：数学分析、高等代数、概率论与数理统计、数学模型、程序设计基础（Python/C++）。参与数学建模入门培训，自学机器学习与数据分析。' },
+                    { school: '浙江省武义第一中学', degree: '高中毕业', date: '2023.09 – 2026.06', details: '理科综合成绩优秀，数学与物理单科多次年级前5%，逻辑思维与抽象分析能力突出，关注AI与数据科学方向。' },
+                ],
+                certificates: [
+                    { name: '阿里巴巴认证初级AI训练师', issuer: '阿里巴巴集团', year: '2025' },
+                    { name: '二胡十级证书', issuer: '中国音乐学院考级委员会', year: '' },
+                    { name: '软笔书法十级证书', issuer: '中国美术学院社会美术水平考级中心', year: '' },
+                    { name: '素描十级证书', issuer: '中国艺术科技研究所', year: '' },
+                ],
+            };
+
+            const app = document.getElementById('app');
+            const backTop = document.getElementById('backTop');
+            const toast = document.getElementById('toast');
+
+            function showToast(msg) {
+                toast.textContent = msg;
+                toast.classList.add('show');
+                clearTimeout(toast._tid);
+                toast._tid = setTimeout(() => toast.classList.remove('show'), 2000);
+            }
+
+            function copyEmail() {
+                const email = resume.email;
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(email).then(() => showToast('✅ 邮箱已复制: ' + email));
+                } else {
+                    const ta = document.createElement('textarea');
+                    ta.value = email;
+                    ta.style.position = 'fixed';
+                    ta.style.opacity = '0';
+                    document.body.appendChild(ta);
+                    ta.select();
+                    try { document.execCommand('copy');
+                        showToast('✅ 邮箱已复制: ' + email); } catch (e) { showToast('⚠️ 复制失败，请手动记录'); }
+                    document.body.removeChild(ta);
+                }
+            }
+
+            function render() {
+                let html = '';
+                // Hero —— 使用真实头像照片 logo.jpg，加载失败则显示"徐"字备用
+                html += `
+        <section class="hero" id="about">
+        <div class="hero-content">
+        <div class="hero-avatar-wrapper">
+        <img src="${resume.avatarSrc}" alt="徐钰林头像" class="hero-avatar-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="hero-avatar-fallback" style="display:none;" aria-hidden="true">徐</div>
+        </div>
+        <h1>${resume.name}</h1>
+        <p class="subtitle">${resume.heroTitle}</p>
+        <p style="max-width:600px;margin:0 auto 12px;color:var(--text2);font-size:.9rem;line-height:1.6;">${resume.heroIntro}</p>
+        <div class="hero-badges">
+        ${resume.heroBadges.map(b=>`<span class="badge${b.accent?' accent':''}">${b.text}</span>`).join('')}
+        </div>
+        <div class="hero-cta">
+        <span class="email-display">
+        📧 ${resume.email}
+        <button class="copy-btn" onclick="window._copyEmail()" title="复制邮箱" aria-label="复制邮箱">📋</button>
+        </span>
+        <a class="btn btn-outline" href="tel:${resume.phone}">📞 ${resume.phone}</a>
+        </div>
+        </div>
+        </section>`;
+
+                // Highlights
+                html += `
+        <section class="section" id="highlights">
+        <h2 class="section-title">亮点成果</h2>
+        <div class="highlights-grid">
+        ${resume.highlights.map(h=>`<div class="highlight-card"><div class="highlight-num">${h.num}</div><div class="highlight-label">${h.label}</div></div>`).join('')}
+        </div>
+        </section>`;
+
+                // Experiences
+                const expTabs = [...new Set(resume.experiences.map(e => e.tab))];
+                html += `
+        <section class="section" id="experience">
+        <h2 class="section-title">实习/实践经历</h2>
+        <div class="tabs-nav" role="tablist" aria-label="经历分类" id="expTabsNav">
+        ${expTabs.map((t,i)=>`<button class="tab-btn${i===0?' active':''}" role="tab" aria-selected="${i===0?'true':'false'}" data-tab="exp-${i}" id="expTab-${i}">${t}</button>`).join('')}
+        </div>
+        ${expTabs.map((tab,ti)=>{
+            const items=resume.experiences.filter(e=>e.tab===tab);
+            return `<div class="tab-panel${ti===0?' active':''}" role="tabpanel" aria-labelledby="expTab-${ti}" id="expPanel-${ti}">
+            ${items.map(e=>`
+            <div class="card">
+            <div class="card-header">
+            <div><div class="card-title">${e.title}</div><div class="card-subtitle">${e.subtitle}</div></div>
+            <span class="card-meta">${e.date}</span>
+            </div>
+            <ul>${e.points.map(p=>`<li>${p}</li>`).join('')}</ul>
+            </div>`).join('')}
+            </div>`;
+        }).join('')}
+        </section>`;
+
+                // Projects
+                const projTabs = [...new Set(resume.projects.map(p => p.tab))];
+                html += `
+        <section class="section" id="projects">
+        <h2 class="section-title">项目经历</h2>
+        <div class="tabs-nav" role="tablist" aria-label="项目分类" id="projTabsNav">
+        ${projTabs.map((t,i)=>`<button class="tab-btn${i===0?' active':''}" role="tab" aria-selected="${i===0?'true':'false'}" data-tab="proj-${i}" id="projTab-${i}">${t}</button>`).join('')}
+        </div>
+        ${projTabs.map((tab,ti)=>{
+            const items=resume.projects.filter(p=>p.tab===tab);
+            return `<div class="tab-panel${ti===0?' active':''}" role="tabpanel" aria-labelledby="projTab-${ti}" id="projPanel-${ti}">
+            ${items.map(p=>`
+            <div class="card">
+            <div class="card-header">
+            <div><div class="card-title">${p.title}</div><div class="card-subtitle">${p.subtitle} · ${p.date}</div></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;">${p.techStack.map(t=>`<span class="skill-tag high">${t}</span>`).join('')}</div>
+            <ul>${p.points.map(pt=>`<li>${pt}</li>`).join('')}</ul>
+            </div>`).join('')}
+            </div>`;
+        }).join('')}
+        </section>`;
+
+                // Skills
+                html += `
+        <section class="section" id="skills">
+        <h2 class="section-title">技能矩阵</h2>
+        <div class="skills-grid">
+        ${resume.skills.map(s=>`
+        <div class="skill-category">
+        <h4>${s.category}</h4>
+        <div class="skill-tags">${s.tags.map(t=>`<span class="skill-tag${t.high?' high':''}">${t.name}</span>`).join('')}</div>
+        </div>`).join('')}
+        </div>
+        </section>`;
+
+                // Education & Certificates
+                html += `
+        <section class="section" id="education">
+        <h2 class="section-title">教育背景</h2>
+        <div class="timeline">
+        ${resume.education.map(ed=>`
+        <div class="timeline-item">
+        <div class="timeline-title">${ed.school}</div>
+        <div class="timeline-sub">${ed.degree} · ${ed.date}</div>
+        <p style="font-size:.85rem;color:var(--text2);margin-top:4px;">${ed.details}</p>
+        </div>`).join('')}
+        </div>
+        </section>
+        <section class="section" id="certificates">
+        <h2 class="section-title">获奖与证书</h2>
+        <div class="certs-grid">
+        ${resume.certificates.map(c=>`
+        <div class="cert-card">
+        <div class="cert-icon">🏅</div>
+        <div class="cert-info"><strong>${c.name}</strong><span>${c.issuer}${c.year?' · '+c.year:''}</span></div>
+        </div>`).join('')}
+        </div>
+        </section>`;
+
+                html += `
+        <footer class="footer">
+        <p>© 2026 徐钰林 · 持续更新中，更多项目与学习成果将在大学期间进一步沉淀。</p>
+        <p style="margin-top:4px;font-size:.75rem;">最后更新：2026年7月</p>
+        </footer>`;
+
+                app.innerHTML = html;
+                window._copyEmail = copyEmail;
+                bindTabs('expTabsNav', 'expTab-', 'expPanel-');
+                bindTabs('projTabsNav', 'projTab-', 'projPanel-');
+            }
+
+            function bindTabs(navId, tabPrefix, panelPrefix) {
+                const nav = document.getElementById(navId);
+                if (!nav) return;
+                const buttons = nav.querySelectorAll('[role="tab"]');
+                buttons.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const idx = this.getAttribute('data-tab').split('-')[1];
+                        const panelId = panelPrefix + idx;
+                        nav.querySelectorAll('[role="tab"]').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+                        document.querySelectorAll('[id^="' + panelPrefix + '"]').forEach(p => p.classList.remove('active'));
+                        this.classList.add('active');
+                        this.setAttribute('aria-selected', 'true');
+                        const panel = document.getElementById(panelId);
+                        if (panel) panel.classList.add('active');
+                    });
+                    btn.addEventListener('keydown', function(e) {
+                        const allBtns = Array.from(nav.querySelectorAll('[role="tab"]'));
+                        const index = allBtns.indexOf(this);
+                        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+                            e.preventDefault();
+                            const next = e.key === 'ArrowRight' ? (index + 1) % allBtns.length : (index - 1 + allBtns.length) % allBtns.length;
+                            allBtns[next].focus();
+                            allBtns[next].click();
+                        }
+                    });
+                });
+            }
+
+            function initTheme() {
+                const stored = localStorage.getItem('resume-theme');
+                if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme:dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                }
+                document.getElementById('themeToggle').addEventListener('click', () => {
+                    const isDark = document.documentElement.classList.toggle('dark');
+                    localStorage.setItem('resume-theme', isDark ? 'dark' : 'light');
+                });
+                document.getElementById('printBtn').addEventListener('click', () => window.print());
+            }
+
+            function initBackTop() {
+                const toggle = () => {
+                    if (window.scrollY > 400) backTop.classList.add('visible');
+                    else backTop.classList.remove('visible');
+                };
+                window.addEventListener('scroll', toggle, { passive: true });
+                backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+                toggle();
+            }
+
+            function initNavScroll() {
+                document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            const navH = document.querySelector('.nav').offsetHeight;
+                            const top = target.getBoundingClientRect().top + window.pageYOffset - navH - 8;
+                            window.scrollTo({ top, behavior: 'smooth' });
+                        }
+                    });
+                });
+            }
+
+            render();
+            initTheme();
+            initBackTop();
+            initNavScroll();
+        })();
+    </script>
+</body>
+</html>
